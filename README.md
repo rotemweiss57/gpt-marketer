@@ -38,6 +38,8 @@ These agents work together to create a tailored B2B email marketing campaign tha
 ### Prerequisites
 
 - Tavily API Key - [Sign Up](https://tavily.com/)
+- OpenAI API Key - [Sign Up](https://platform.openai.com/)
+
 
 ### Installation
 
