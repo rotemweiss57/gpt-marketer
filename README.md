@@ -14,7 +14,7 @@ Marketer consists of five specialized agents, each with a specific role in the m
 
 These agents work together to create a tailored B2B email marketing campaign that maximizes engagement and conversion rates.
 
-<img width="718" alt="gpt-researcher" src="https://github.com/rotemweiss57/gpt-marketer/assets/91344214/e4bbc3b3-815e-47b8-82f7-b41528b625c1">
+<img width="700" alt="gpt-researcher" src="https://github.com/rotemweiss57/gpt-marketer/assets/91344214/e4bbc3b3-815e-47b8-82f7-b41528b625c1">
 
 ## 🌟 Features
 
