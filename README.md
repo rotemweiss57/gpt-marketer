@@ -1,8 +1,9 @@
-![gpt-marketer](https://github.com/rotemweiss57/gpt-marketer/assets/91344214/45902176-13fb-4aa9-9ebf-9320b6294383)
-
 # GPT Marketer
 
 Welcome to the GPT Marketer project, an innovative AI-driven marketing solution designed to revolutionize B2B email marketing campaigns. Marketer empowers businesses to connect with their target audiences in a more personalized and effective way by leveraging the power of AI to create and send personalized emails.
+
+![gpt-marketer](https://github.com/rotemweiss57/gpt-marketer/assets/91344214/45902176-13fb-4aa9-9ebf-9320b6294383)
+
 
 ## 🔍 Overview
 
