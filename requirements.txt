@@ -1,3 +1,5 @@
 langchain
 langgraph
 tavily-python
+flask
+flask_cors
