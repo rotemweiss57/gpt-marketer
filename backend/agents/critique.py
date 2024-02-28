@@ -1,28 +1,60 @@
+import sys
+from pathlib import Path
 from datetime import datetime
 from langchain.adapters.openai import convert_openai_messages
 from langchain_openai import ChatOpenAI
+from models.spam_model import SpamClassifier
+
 
 class CritiqueAgent:
+
     def __init__(self):
-        pass
+        self.spam_classifier = SpamClassifier(model_path='./models/email_spam_model.pkl',
+                                              vectorizer_path='./models/vectorizer.pkl')
 
     def critique(self, article: dict):
-        prompt = [{
-            "role": "system",
-            "content": "You are a newspaper writing critique. Your sole purpose is to provide feedback on a written "
-                       "article so the writer will know what to fix.\n "
-        }, {
-            "role": "user",
-            "content": f"Today's date is {datetime.now().strftime('%d/%m/%Y')}\n."
-                       f"{str(article)}\n"
-                       f"Your task is to provide a short feedback on the article only if necessary.\n"
-                       f"if you think the article is good, please return None.\n"
-                       f"if you noticed the field 'message' in the article, it means the writer has revised the article"
-                        f"based on your previous critique. you can provide feedback on the revised article or just "
-                       f"return None if "
-                        f"you think the article is good.\n"
-                        f"Please return a string of your critique or None.\n"
-        }]
+        email_content = article['email_content']
+        critique_result = self.spam_classifier.classify_email(email_content)
+        if critique_result <= 0.4:
+
+            prompt = [{
+                "role": "system",
+                "content": "You are a marketing email writing critiquer. Your sole purpose is to provide feedback on "
+                           "a written article so the writer will know what to fix to increase the chances of their "
+                           "target reader interacting with the email.\n"
+            }, {
+                "role": "user",
+                "content": f"Today's date is {datetime.now().strftime('%d/%m/%Y')}\n."
+                           f"{str(article['email_content'])}\n"
+                           f"Your task is to provide a short feedback on the email only if necessary.\n"
+                           f"if you think the email is good, please return None.\n"
+                           f"if you noticed the field 'message' in the article, it means the writer has revised the article"
+                           f"based on your previous critique. you can provide feedback on the revised email or just "
+                           f"return None if "
+                           f"you think the email is good.\n"
+                           f"Please return a string of your critique or None.\n"
+            }]
+
+        else:
+            prompt = [{
+                "role": "system",
+                "content": "You are a marketing email writing critiquer. Your sole purpose is to provide feedback on "
+                           "a written article so the writer will know what to fix to increase the chances of their "
+                           f"target reader interacting with the email. Additionally, the likelihood of this email "
+                           f"being classified as spam is {critique_result * 100}, make additional recommendations to "
+                           f"the writer to reduce this likelihood to under 40%. \n"
+            }, {
+                "role": "user",
+                "content": f"Today's date is {datetime.now().strftime('%d/%m/%Y')}\n."
+                           f"{str(article['email_content'])}\n"
+                           f"Your task is to provide a short feedback on the email only if necessary.\n"
+                           f"if you think the email is good, please return None.\n"
+                           f"if you noticed the field 'message' in the article, it means the writer has revised the article"
+                           f"based on your previous critique. you can provide feedback on the revised email or just "
+                           f"return None if "
+                           f"you think the email is good.\n"
+                           f"Please return a string of your critique or None.\n"
+            }]
 
         lc_messages = convert_openai_messages(prompt)
         response = ChatOpenAI(model='gpt-4', max_retries=1).invoke(lc_messages).content
