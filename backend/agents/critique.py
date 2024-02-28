@@ -68,3 +68,4 @@ class CritiqueAgent:
     def run(self, article: dict):
         article.update(self.critique(article))
         return article
+
