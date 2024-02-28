@@ -15,5 +15,5 @@ class SpamClassifier:
 
         prediction = self.model.predict_proba(transformed_email)
 
-        return prediction[0][1]*.02f # Return percentage likelihood of being classified as spam
+        return prediction[0][1] # Return percentage likelihood of being classified as spam
 
