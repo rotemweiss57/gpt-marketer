@@ -40,13 +40,24 @@ def submit():
 
         ### 1. Data ready to be sent to the backend
 
-        # Converting to the desired dictionary format
+        # Converting to the desired dictionary format:
+        # format is  {'product_description': '0', 'user_company': '0', 'user_email': 'omer.n99@gmail.com',
+        # 'user_first_name': '0', 'user_last_name': '0', 'leads': {1: {'name': 'Mark Morrison', 'email':
+        # 'mark.morrison@deltacorp.com', 'title': 'Marketing Coordinator'}, 2:.....
         data_dict = {}
+        main_dict = {}
+        main_dict['product_description'] = product_description
+        main_dict['user_company'] = company_name
+        main_dict['user_email'] = email_address
+        main_dict['user_first_name'] = first_name
+        main_dict['user_last_name'] = last_name
+        main_dict['leads'] = data_dict
+
         for idx, row in df.iterrows():
             data_dict[idx + 1] = {'name': row['name'], 'email': row['email'], 'title': row['title']}
 
         # Do something with data_dict
-        print("dictionary of leads:", data_dict)
+        print("dictionary of leads:", main_dict)
 
         ### 2. Data to be displayed in success.html
 
@@ -59,7 +70,6 @@ def submit():
         os.remove(filepath)
     else:
         leads_list = []
-    print(leads_list)
     # Redirect to the success page with the email address to display
     return redirect(url_for('success', index=False, leads_list=leads_list))
 
