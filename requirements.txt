@@ -5,6 +5,7 @@ tavily-python
 flask~=3.0.2
 flask_cors
 numpy
+pandas
 sys
 nltk~=3.8.1
 agents~=1.4.0
