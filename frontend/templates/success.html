@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="success-message">
+    <p>Your submission was successful!</p>
+</div>
+
+{% if leads_list %}
+    <h2>Processed Leads</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lead in leads_list %}
+                {% if loop.index <= 5 %}
+                    <tr>
+                        <td>{{ lead['name'] }}</td>
+                        <td>{{ lead['email'] }}</td>
+                        <td>{{ lead['title'] }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+    ...
+{% else %}
+    <p>No leads data to display.</p>
+{% endif %}
+{% endblock %}

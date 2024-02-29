@@ -1,20 +1,243 @@
-.logo-box {
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    padding-top: 30px; /* Adjust this value based on the actual height of your navbar */
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures the navbar stays on top of other content */
+    background-color: #0275d8; /* Sets the navbar color to match the submit button */
+    border-bottom: 1px solid #eee;
+    padding: 10px 20px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    color: white; /* Assuming you want the text color to be white for contrast */
 }
 
-.logo-text {
+.submit-btn-2 {
+    margin-top: 15px;
+}
+
+
+
+.logo {
+    height: 52px;
+    margin-right: 5px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
     color: white;
-    font-size: 32px;
-    font-family: Georgia;
-    margin-left: 10px;
+    letter-spacing: 1px;
+    font-family: Monaco;
+    font-weight: 700;
+}
+
+.navbar img {
+    height: 50px;
     margin-right: 10px;
-    padding-top: 4px;
-    margin-bottom: -5px;
 }
 
-a:hover {
-    color: orange;
-    text-decoration: none; /* Underlines the text */
-    font-weight: bold; /* Makes the font bold */
+.nav-link, .navbar .navbar-brand, .navbar .navbar-nav .nav-link {
+    color: white !important;
+    text-decoration: none;
 }
 
+/* Adjustments for centered layout and styling */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, p {
+    color: #333;
+}
+
+p {
+    line-height: 1.6;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type=text], input[type=email], textarea, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+textarea {
+    height: 100px;
+}
+
+button {
+    background-color: #007bff; /* Changed to blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 5px;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.circle-border {
+    display: inline-block;
+    width: 100px; /* Adjust width as needed */
+    height: 35px; /* Adjust height as needed */
+    text-align: center;
+    align-items: center;
+    border: 2px solid #ff8c00; /* Vivid orange border */
+    border-radius: 20px; /* Rounded edges */
+    background-color: white; /* Base background color */
+    color: white; /* Text color for contrast */
+    font-size: 16px;
+    padding: 4px;
+    background-size: 200% 200%;
+    background-image: linear-gradient(to right, #ffa500 0%, #ff8c00 50%, #ffa500 100%);
+    animation: gradientBG 4s ease infinite;
+}
+
+.circle-border-2 {
+    display: inline-block;
+    width: 30%; /* Adjust width as needed */
+    height: 35px; /* Adjust height as needed */
+    text-align: center;
+    align-items: center;
+    border: 2px solid #ff8c00; /* Vivid orange border */
+    border-radius: 20px; /* Rounded edges */
+    background-color: white; /* Base background color */
+    color: white; /* Text color for contrast */
+    font-size: 16px;
+    padding: 4px;
+    background-size: 200% 200%;
+    background-image: linear-gradient(to right, #ffa500 0%, #ff8c00 50%, #ffa500 100%);
+    animation: gradientBG 4s ease infinite;
+}
+
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+.circle-border:hover {
+    animation: gradientBG 3s ease infinite;
+    color: white;
+    font-weight: bold;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.about-aim, .how-it-works, .benefits, .get-started {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    color: #0275d8; /* Consistent with your branding */
+}
+
+.hero-section {
+    display: flex; /* This will align children side by side */
+    align-items: center; /* This centers the children vertically */
+    justify-content: center; /* This centers the children horizontally */
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column; /* Stack the children vertically on smaller screens */
+    }
+}
+
+.centered {
+    text-align: center;
+}
+
+.hero-section > div {
+    flex: 1; /* This makes each child (your text and image containers) take up equal space */
+    padding: 10px; /* Add some padding around each child for spacing */
+}
+
+.signup-btn {
+    display: inline-block;
+    background-color: #f0ad4e; /* Stylish button color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: #ec971f; /* Darker shade on hover for interactivity */
+}
+
+.index-img {
+    max-width: 100%; /* Ensures the image is responsive and doesn't overflow its container */
+    height: auto; /* Keeps the image's aspect ratio */
+}
+
+.form-container .input-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Adjust the gap between inputs as needed */
+}
+
+.form-container .input-group {
+    flex: 1; /* Makes each input group flex and share equal width */
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container textarea {
+    width: 100%; /* Ensures inputs take up the full width of their parent container */
+    padding: 8px; /* Adjust padding for smaller inputs */
+    margin-bottom: 10px; /* Space between inputs */
+}
+
+.form-container textarea {
+    height: 100px; /* Adjust height as needed */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #0275d8;
+    color: white;
+}
