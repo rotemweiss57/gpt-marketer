@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}AIM - Welcome{% endblock %}
+
+{% block content %}
+<div class="description">
+    <p>Welcome to AIM, your automated solution for generating custom marketing emails. Provide us with your leads and product description, and we will take care of the rest.</p>
+</div>
+<div class="form-container">
+    <form action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
+        <div class="input-row">
+            <div class="input-group">
+                <input type="text" name="first_name" placeholder="First Name" required>
+            </div>
+            <div class="input-group">
+                <input type="text" name="last_name" placeholder="Last Name" required>
+            </div>
+        </div>
+        <input type="text" name="company_name" placeholder="Company Name" required>
+        <input type="email" name="email_address" placeholder="Your Email Address" required>
+        <textarea name="product_description" placeholder="Product Description" required></textarea>
+        <input type="file" name="leads_file" accept=".csv, .xlsx" required>
+        <button class="submit-btn submit-btn-2" type="submit">Send</button>
+    </form>
+</div>
+
+{% endblock %}
