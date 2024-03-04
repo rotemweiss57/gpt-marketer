@@ -5,24 +5,14 @@ import json5 as json
 
 sample_json = """
 {
-  "subject": subject of the email,
-  "date": today's date,
-  "email_content": [
-    "introduction paragraph ",
-    "main paragraph",
-    "conclusion paragraph",
-    ]
-}
+    "subject": subject of the email,
+    "email_content": "email content",
 """
 
 sample_revise_json = """
 {
-  "subject": subject of the email,
-  "email_content": [
-    "introduction paragraph ",
-    "main paragraph",
-    "conclusion paragraph",
-    ],
+    "subject": subject of the email,
+    "email_content": "email content",
     "message": "message to the critique"
 }
 """
@@ -32,23 +22,20 @@ class WriterAgent:
     def __init__(self):
         pass
 
-    def writer(self, query: str, target: str, sources: list):
+    def writer(self, email: dict):
 
         prompt = [{
-            "role": "system", # Should we leave as system or change?
+            "role": "system",
             "content": "You are a marketing email writer. Your sole purpose is to write a well-written personalized "
-                       "marketing email about a product using a list of articles.\n "
-                        # should tavily results be called articles?
+                       "marketing email about my product based on provided context and sources.\n"
         }, {
             "role": "user",
-            "content": f"Product Description: {query}"
-                       f"Target Company: {target}"
-                       f"{sources}\n"
-                       f"Your task is to write a personalized and engaging marketing "
-                       f"email for me based on the provided query, sources and product description"
-                       f"based on the sources.\n "
-                       f"Please return nothing but a JSON in the following format:\n"
-                       f"{sample_json}\n "
+            "content": f"{str(email)}\n"
+
+                       f"Your task is to write a personalized and engaging email about a product topic based on the "
+                       f"given context and news sources.\n"
+                       f"please return nothing but a JSON in the following format:\n"
+                       f"{sample_json}\n"
 
         }]
 
@@ -57,22 +44,25 @@ class WriterAgent:
             "response_format": {"type": "json_object"}
         }
 
-        response = ChatOpenAI(model='gpt-4-0125-preview', max_retries=1, model_kwargs=optional_params).invoke(lc_messages).content
+        response = ChatOpenAI(model='gpt-4-0125-preview', max_retries=1, model_kwargs=optional_params).invoke(
+            lc_messages).content
         return json.loads(response)
 
-    def revise(self, article: dict):
+    def revise(self, email: dict):
         prompt = [{
             "role": "system",
             "content": "You are editing a marketing email. Your sole purpose is to edit a personalized and "
                        "engaging email about a product topic based on given critique\n "
         }, {
             "role": "user",
-            "content": f"{str(article)}\n"
-                        f"Your task is to edit the email based on the critique given.\n "
-                        f"Please return json format of the 'email_content' and a new 'message' field"
-                        f"to the critique that explain your changes or why you didn't change anything.\n"
-                        f"please return nothing but a JSON in the following format:\n"
-                        f"{sample_revise_json}\n "
+            "content": f"{str(email)}\n"
+                       
+                       f"Your task is to edit the email based on the critique given and explain the changes made in "
+                       f"the message field.\n"
+                       f"if you cannot change the email based on the critique, please return the same email and "
+                       f"explain why in the message field\n"
+                       f"please return nothing but a JSON in the following format:\n"
+                       f"{sample_revise_json}\n "
 
         }]
 
@@ -81,16 +71,17 @@ class WriterAgent:
             "response_format": {"type": "json_object"}
         }
 
-        response = ChatOpenAI(model='gpt-4-0125-preview', max_retries=1, model_kwargs=optional_params).invoke(lc_messages).content
+        response = ChatOpenAI(model='gpt-4-0125-preview', max_retries=1, model_kwargs=optional_params).invoke(
+            lc_messages).content
         response = json.loads(response)
-        print(f"For article: {article['title']}")
+        print(f"For article: {email['title']}")
         print(f"Writer Revision Message: {response['message']}\n")
         return response
 
-    def run(self, article: dict):
-        critique = article.get("critique")
+    def run(self, email: dict):
+        critique = email.get("critique")
         if critique is not None:
-            article.update(self.revise(article))
+            email.update(self.revise(email))
         else:
-            article.update(self.writer(article["query"], article["sources"]))
-        return article
+            email.update(self.writer(email))
+        return email

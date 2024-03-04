@@ -3,14 +3,14 @@ from pathlib import Path
 from datetime import datetime
 from langchain.adapters.openai import convert_openai_messages
 from langchain_openai import ChatOpenAI
-from models.spam_model import SpamClassifier
+from .models.spam_model import SpamClassifier
 
 
 class CritiqueAgent:
 
     def __init__(self):
-        self.spam_classifier = SpamClassifier(model_path='./models/email_spam_model.pkl',
-                                              vectorizer_path='./models/vectorizer.pkl')
+        self.spam_classifier = SpamClassifier(model_path='/Users/rotemweiss/Desktop/gpt-marketer/backend/agents/models/email_spam_model.pkl',
+                                              vectorizer_path='/Users/rotemweiss/Desktop/gpt-marketer/backend/agents/models/vectorizer.pkl')
 
     def critique(self, article: dict):
         email_content = article['email_content']

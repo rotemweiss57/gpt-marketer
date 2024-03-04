@@ -2,7 +2,7 @@ import joblib
 
 
 class SpamClassifier:
-    def __init__(self, model_path='email_spam_model.pkl', vectorizer_path='vectorizer.pkl'):
+    def __init__(self, model_path='/Users/rotemweiss/Desktop/gpt-marketer/backend/agents/models/email_spam_model.pkl', vectorizer_path='/Users/rotemweiss/Desktop/gpt-marketer/backend/agents/models/vectorizer.pkl'):
         # Load the model and vectorizer at initialization
         self.model = joblib.load(model_path)
         self.vectorizer = joblib.load(vectorizer_path)

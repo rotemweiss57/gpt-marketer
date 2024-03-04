@@ -9,49 +9,22 @@ class SearchAgent:
         # Initialization can be expanded if needed
         pass
 
-    def search_tavily(self, query: str, topic: str = "marketing"):
-        """
-        Search for marketing-related content using Tavily based on the query.
-
-        Args:
-            query (str): The search query, potentially related to the product or target market.
-            topic (str): The topic to search for, defaulting to "marketing" to align with the agent's use case.
-
-        Returns:
-            tuple: A tuple containing a list of sources and an image URL.
-        """
+    def search_tavily(self, email: dict):
+        search_query = f"latest news about {email['domain']}"
         # Perform a search with Tavily, specifying the topic and other parameters
-        results = tavily_client.search(query=query, topic=topic, max_results=10, include_images=True)
+        results = tavily_client.search(query=search_query, topic="news", max_results=5, include_images=True)
         sources = results.get("results", [])
+        email['sources'] = sources
 
         # Attempt to retrieve the first image from the results, defaulting to a placeholder if none are found
         image = results.get("images", [
             "https://images.unsplash.com/photo-1542281286-9e0a16bb7366?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3c3BhcGVyJTIwbmV3c3BhcGVyJTIwYXJ0aWNsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"])[
             0]
+        email['image'] = image
 
-        return sources, image
+        return email
 
-    def run(self, query_info: dict):
-        """
-        Executes the search process based on a query and updates the provided dict with results.
-
-        Args:
-            query_info (dict): A dictionary containing the query and possibly other information.
-
-        Returns:
-            dict: The updated dictionary including search results and an image.
-        """
-        # Extract query and potentially other relevant info (like topic) from the input dict
-        query = query_info.get("query")
-        topic = query_info.get("topic", "marketing")  # Default to "marketing" if no topic is specified
-
+    def run(self, email: dict):
         # Perform the search
-        sources, image = self.search_tavily(query=query, topic=topic)
-
-        # Update the input dict with search results and the selected image
-        query_info.update({
-            "sources": sources,
-            "image": image
-        })
-
-        return query_info
+        email = self.search_tavily(email)
+        return email

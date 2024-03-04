@@ -1,13 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import os
+import threading
 import pandas as pd
+
+from backend.server import backend_app
 
 app = Flask(__name__, template_folder='frontend/templates', static_folder='frontend/static')
 app.secret_key = 'your_secret_key'
 
+
 @app.route('/')
 def index():
     return render_template('index.html', index=True)
+
 
 @app.route('/product')
 def product():
@@ -73,11 +78,29 @@ def submit():
     # Redirect to the success page with the email address to display
     return redirect(url_for('success', index=False, leads_list=leads_list))
 
+
 @app.route('/success')
 def success():
     leads_data = session.get('leads_data', [])
     email = request.args.get('email')
     return render_template('success.html', email=email, index=False, leads_list=leads_data)
 
+
+# Define a function to run the frontend app
+def run_frontend():
+    app.run(debug=True, port=5000, use_reloader=False)
+
+
+# Define a function to run the backend app
+def run_backend():
+    backend_app.run(debug=True, port=8000, use_reloader=False)
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Create a thread for each Flask app
+    frontend_thread = threading.Thread(target=run_frontend)
+    backend_thread = threading.Thread(target=run_backend)
+
+    # Start the threads
+    frontend_thread.start()
+    backend_thread.start()
