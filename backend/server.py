@@ -1,4 +1,5 @@
 import asyncio
+import os
 
 from flask import Flask, jsonify, request
 from backend.main import MasterAgent
@@ -16,7 +17,8 @@ def index():
 def generate_emails():
     # data = request.json
 
-    path_to_excel = "/Users/rotemweiss/Desktop/gpt-marketer/backend/leads_list.xlsx"
+    filename = "leads_list.xlsx"
+    path_to_excel = os.path.join(os.path.dirname(__file__), filename)
     target = []
     df = pd.read_excel(path_to_excel)
     for idx, row in df.iterrows():
