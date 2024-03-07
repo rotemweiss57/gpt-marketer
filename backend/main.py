@@ -25,7 +25,7 @@ class MasterAgent:
 
         # Create a list dict for each target
         emails = []
-        for lead in target[:2]:
+        for lead in target[:1]:
             email = {
 
                 # target data

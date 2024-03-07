@@ -59,11 +59,12 @@ class WriterAgent:
             "content": f"subject: {email['subject']}\n"
                         f"email_content: {email['email_content']}\n"
                         f"message: {email.get('message')}\n"
+                       f"number_of_revisions: {email.get('number_of_revisions', 0)}\n"
                        f"Your task is to edit the email based on the critique given and explain the changes made in "
                        f"the message field.\n"
                        f"if you cannot change the email based on the critique, please return the same email and "
                        f"explain why in the message field\n"
-                       f"Also, please increment the number of revisions made to the email by 1\n"
+                       f"Also, please increment number_of_revisions by 1\n"
                        f"Please return nothing but a JSON in the following format:\n"
                        f"{sample_revise_json}\n "
 

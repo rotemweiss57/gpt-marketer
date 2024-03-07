@@ -58,7 +58,9 @@ class CritiqueAgent:
 
         lc_messages = convert_openai_messages(prompt)
         response = ChatOpenAI(model='gpt-4', max_retries=1, max_tokens=400).invoke(lc_messages).content
-        if response == 'None' or article.get('number_of_revisions') == 3:
+        number_of_revisions = article.get('number_of_revisions')
+        print(type(number_of_revisions))
+        if response == 'None' or number_of_revisions == "2": # deterministic approach
             return {'critique': None}
         else:
             print(f"For article: {article['title']}")
