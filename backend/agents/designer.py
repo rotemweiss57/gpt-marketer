@@ -1,12 +1,26 @@
+import os
+
 class DesignerAgent:
-    def __init__(self, output_dir: str):
+    def __init__(self, output_dir):
         self.output_dir = output_dir
 
-    def design(self, email_content, email_title: str):
-        # Design the email
-        email_html = f"<html><body><h1>{email_title}</h1><p>{email_content}</p></body></html>"
-        return email_html
+    def load_html_template(self):
+        relative_path = "../templates/index.html"
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        html_file_path = os.path.join(dir_path, relative_path)
+        with open(html_file_path) as f:
+            html_template = f.read()
+        return html_template
+
+    def designer(self, email):
+        html_template = self.load_html_template()
+        # image = email["image"]
+        content = email["content"]
+        # html_template = html_template.replace("{{image}}", image)
+        html_template = html_template.replace("{{content}}", content)
+        email["html"] = html_template
+        return email
 
     def run(self, email: dict):
-        email["html"] = self.design(email['email_content'], email['title'])
+        email = self.designer(email)
         return email
