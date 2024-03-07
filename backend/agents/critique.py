@@ -19,7 +19,7 @@ class CritiqueAgent:
 
             prompt = [{
                 "role": "system",
-                "content": "You are a marketing email writing critiquer. Your sole purpose is to provide feedback on "
+                "content": "You are a marketing email writing critique. Your sole purpose is to provide feedback on "
                            "a written article so the writer will know what to fix to increase the chances of their "
                            "target reader interacting with the email.\n"
             }, {
@@ -38,7 +38,7 @@ class CritiqueAgent:
         else:
             prompt = [{
                 "role": "system",
-                "content": "You are a marketing email writing critiquer. Your sole purpose is to provide feedback on "
+                "content": "You are a marketing email writing critique. Your sole purpose is to provide feedback on "
                            "a written article so the writer will know what to fix to increase the chances of their "
                            f"target reader interacting with the email. Additionally, the likelihood of this email "
                            f"being classified as spam is {critique_result * 100}, make additional recommendations to "
@@ -47,7 +47,7 @@ class CritiqueAgent:
                 "role": "user",
                 "content": f"Today's date is {datetime.now().strftime('%d/%m/%Y')}\n."
                            f"{str(article['email_content'])}\n"
-                           f"Your task is to provide a short feedback on the email only if necessary.\n"
+                           f"Your task is to provide a really short feedback on the email only if necessary.\n"
                            f"if you think the email is good, please return None.\n"
                            f"if you noticed the field 'message' in the article, it means the writer has revised the article"
                            f"based on your previous critique. you can provide feedback on the revised email or just "
@@ -57,8 +57,8 @@ class CritiqueAgent:
             }]
 
         lc_messages = convert_openai_messages(prompt)
-        response = ChatOpenAI(model='gpt-4', max_retries=1).invoke(lc_messages).content
-        if response == 'None':
+        response = ChatOpenAI(model='gpt-4', max_retries=1, max_tokens=400).invoke(lc_messages).content
+        if response == 'None' or article.get('number_of_revisions') == 3:
             return {'critique': None}
         else:
             print(f"For article: {article['title']}")

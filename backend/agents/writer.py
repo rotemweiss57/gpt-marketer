@@ -13,7 +13,8 @@ sample_revise_json = """
 {
     "subject": subject of the email,
     "email_content": "email content",
-    "message": "message to the critique"
+    "message": "message to the critique",
+    "number_of_revisions": "number of revisions made to the email"
 }
 """
 
@@ -55,13 +56,15 @@ class WriterAgent:
                        "engaging email about a product topic based on given critique\n "
         }, {
             "role": "user",
-            "content": f"{str(email)}\n"
-                       
+            "content": f"subject: {email['subject']}\n"
+                        f"email_content: {email['email_content']}\n"
+                        f"message: {email.get('message')}\n"
                        f"Your task is to edit the email based on the critique given and explain the changes made in "
                        f"the message field.\n"
                        f"if you cannot change the email based on the critique, please return the same email and "
                        f"explain why in the message field\n"
-                       f"please return nothing but a JSON in the following format:\n"
+                       f"Also, please increment the number of revisions made to the email by 1\n"
+                       f"Please return nothing but a JSON in the following format:\n"
                        f"{sample_revise_json}\n "
 
         }]
@@ -84,4 +87,5 @@ class WriterAgent:
             email.update(self.revise(email))
         else:
             email.update(self.writer(email))
+            print(email)
         return email

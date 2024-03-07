@@ -1,8 +1,6 @@
 import os
 import time
 from concurrent.futures import ThreadPoolExecutor
-import asyncio
-
 import pandas as pd
 from langgraph.graph import Graph
 
@@ -15,7 +13,7 @@ class MasterAgent:
         self.output_dir = f"outputs/run_{int(time.time())}"
         os.makedirs(self.output_dir, exist_ok=True)
 
-    async def run(self, data: dict):
+    def run(self, data: dict):
 
         # Extract the queries from the input data
         target = data.get("target")
@@ -27,7 +25,7 @@ class MasterAgent:
 
         # Create a list dict for each target
         emails = []
-        for lead in target:
+        for lead in target[:2]:
             email = {
 
                 # target data
@@ -43,7 +41,6 @@ class MasterAgent:
                 "user_first_name": first_name,
                 "user_last_name": last_name
             }
-            print(email)
             emails.append(email)
 
 
@@ -76,8 +73,9 @@ class MasterAgent:
         # compile the graph
         chain = workflow.compile()
 
-        # Execute the graph for each email
-        results = await asyncio.gather(*(chain.invoke(email) for email in emails))
+        # Execute the graph for each email using a thread pool
+        with ThreadPoolExecutor() as executor:
+            results = list(executor.map(lambda x: chain.invoke(x), emails))
 
         # turn results into a dictionary
         results = {i: results[i] for i in range(len(results))}

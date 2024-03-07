@@ -13,7 +13,7 @@ def index():
 
 
 @backend_app.route('/generate_emails', methods=['GET']) #tmp
-async def generate_emails():
+def generate_emails():
     # data = request.json
 
     path_to_excel = "/Users/rotemweiss/Desktop/gpt-marketer/backend/leads_list.xlsx"
@@ -44,5 +44,5 @@ async def generate_emails():
     }
 
     master_agent = MasterAgent()
-    await master_agent.run(data)
+    master_agent.run(data)
     return jsonify({"status": "Success"}), 200
