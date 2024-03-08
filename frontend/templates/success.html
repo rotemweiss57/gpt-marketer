@@ -1,40 +1,37 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="row justify-content-center">
-<div class="col-md-6 mt-5">
-<div class="success-message">
-    <p>Your submission was successful!</p>
-</div>
+<div class="justify-content-center">
+    <div class="success-message title"><p>Your submission was successful!</p></div>
 
-{% if leads_list %}
-    <h2>Processed Leads</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Title</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for lead in leads_list %}
-                {% if loop.index <= 5 %}
-                    <tr>
-                        <td>{{ lead['name'] }}</td>
-                        <td>{{ lead['email'] }}</td>
-                        <td>{{ lead['title'] }}</td>
-                    </tr>
-                {% endif %}
-            {% endfor %}
-        </tbody>
-    </table>
-    <a class="btn btn-primary mt-3" href="{{ url_for('email_confirmation') }}">
-        See The Results >
-    </a>
-{% else %}
-    <p>No leads data to display.</p>
-{% endif %}
-</div>
+    {% if leads_list %}
+        <div class="title"><h2>Processed Leads</h2></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for lead in leads_list %}
+                    {% if loop.index <= 5 %}
+                        <tr>
+                            <td>{{ lead['name'] }}</td>
+                            <td>{{ lead['email'] }}</td>
+                            <td>{{ lead['title'] }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <!-- Centering the button -->
+        <div class="d-flex justify-content-center mt-3">
+            <a class="btn btn-primary" href="{{ url_for('email_confirmation') }}">See The Results &gt;</a>
+        </div>
+    {% else %}
+        <p>No leads data to display.</p>
+    {% endif %}
 </div>
 {% endblock %}

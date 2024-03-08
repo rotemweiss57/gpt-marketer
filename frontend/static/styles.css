@@ -266,3 +266,34 @@ th {
     padding: 30px;
     border-radius: 7px;
 }
+
+.title {
+    text-align: center !important;
+}
+
+.form-control, .form-control-plaintext {
+    background-color: white; /* Sets the background color to white */
+    border: 1px solid #ced4da; /* Adds a light grey border similar to default form controls */
+    margin-top: 0.375rem; /* Reduces the top margin to bring the textbox closer to the label */
+}
+
+.form-control-plaintext {
+    border: 0; /* Removes the border for the readonly input if desired */
+}
+
+.form-control[readonly] {
+    background-color: white; /* Ensures readonly form controls also have a white background */
+    opacity: 1; /* Ensures the readonly input text is not faded */
+}
+
+/* Adjust the margin of form labels */
+.col-form-label {
+    margin-bottom: 0; /* Removes the bottom margin */
+    padding-top: calc(0.375rem + 1px); /* Adjusts the top padding to align with form control */
+    padding-bottom: 0; /* Reduces padding to decrease space */
+}
+
+/* Adjust the spacing of form groups for tighter layout */
+.form-group {
+    margin-bottom: 0.5rem; /* Reduces the bottom margin of the form-group for a tighter layout */
+}
