@@ -15,7 +15,7 @@ class DesignerAgent:
     def designer(self, email):
         html_template = self.load_html_template()
         # image = email["image"]
-        content = email["content"]
+        content = email["email_content"]
         # html_template = html_template.replace("{{image}}", image)
         html_template = html_template.replace("{{content}}", content)
         email["html"] = html_template
