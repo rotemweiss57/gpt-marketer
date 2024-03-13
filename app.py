@@ -1,5 +1,6 @@
 from multiprocessing import Process
 
+import requests
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import os
 import threading
@@ -168,9 +169,7 @@ def submit():
 @app.route('/submit-table-data', methods=['POST'])
 def submit_table_data():
     data = request.json  # This is the data sent from the client
-    print("data: ", data)
     user_info = session.get('user_info')
-    print("user info ---", user_info)
 
     data_dict = {}
     data_dict['product_description'] = user_info['product_description']
@@ -183,9 +182,21 @@ def submit_table_data():
 
     data_dict['leads'] = leads['leads']
 
-    # After processing the data, you can redirect
-    # Since redirects don't work directly with AJAX requests, you'll respond with a URL to redirect to
-    return render_template('email_confirmation.html', data=data_dict)
+    # Send the data_dict to the backend server
+    backend_url = 'http://localhost:8000/generate_emails'
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(backend_url, json=data_dict, headers=headers)
+
+    if response.status_code == 200:
+        results = response.json()
+        # Assuming you want to pass these results to a template or further process them
+        return render_template('email_confirmation2.html', data=results)
+    else:
+        # Handle error or unsuccessful response
+        print("Error sending data to backend:", response.status_code)
+        return "Error processing your request", 500
+
+
 
 
 @app.route('/preview_leads')
@@ -196,7 +207,7 @@ def preview_leads():
 
 @app.route('/email_confirmation')
 def email_confirmation():
-    return render_template('email_confirmation.html', emails=email_list)
+    return render_template('email_confirmation.html')
 
 
 # Define a function to run the frontend app

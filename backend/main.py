@@ -15,6 +15,7 @@ class MasterAgent:
 
     def run(self, data: dict):
 
+        print(data)
         # Extract the queries from the input data
         target = data.get("leads")
         product_description = data.get("product_description")
