@@ -1,11 +1,15 @@
 import asyncio
 import os
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Response
 from backend.main import MasterAgent
+from flask_cors import CORS
 import pandas as pd
 
 backend_app = Flask(__name__)
+
+CORS(backend_app)
+
 
 
 @backend_app.route('/', methods=['GET'])
@@ -13,38 +17,53 @@ def index():
     return jsonify({"status": "Running"}), 200
 
 
-@backend_app.route('/generate_emails', methods=['GET']) #tmp
+@backend_app.route('/generate_emails', methods=['POST'])
 def generate_emails():
-    # data = request.json
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    company_name = request.form.get('company_name')
+    email_address = request.form.get('email_address')
+    product_description = request.form.get('product_description')
 
-    filename = "leads_list.xlsx"
-    path_to_excel = os.path.join(os.path.dirname(__file__), filename)
-    target = []
-    df = pd.read_excel(path_to_excel)
-    for idx, row in df.iterrows():
-        target.append({'name': row['name'], 'email': row['email'], 'title': row['title']})
+    # Handling the file part
+    file = request.files.get('leads_file')
 
-    data = {
-        "target": target,
-        "product_description": "HubSpot CRM for Marketing is a comprehensive, cloud-based platform designed to assist "
-                               "businesses in managing their marketing efforts more efficiently. It enables "
-                               "organizations to automate and streamline their marketing campaigns across multiple "
-                               "channels, providing tools for email marketing, social media management, SEO, "
-                               "content creation, and website analytics. With its user-friendly interface, "
-                               "HubSpot CRM for Marketing allows marketers to create personalized customer "
-                               "experiences, track the effectiveness of their marketing campaigns in real-time, "
-                               "and generate detailed reports to measure ROI. Additionally, it offers features for "
-                               "lead generation, nurturing, and scoring, helping businesses attract more prospects "
-                               "and convert them into loyal customers. Integrated with HubSpot's sales, service, "
-                               "and operations software, it ensures a cohesive and aligned approach across all "
-                               "customer touchpoints, enhancing overall customer satisfaction and driving business "
-                               "growth.",
-        "user_company": "HubsSpot",
-        "user_email": "rotem@hubspot.com",
-        "user_first_name": "Rotem",
-        "user_last_name": "Weiss"
-    }
+    if file and allowed_file(file.filename):
+        # Here you can process the Excel file
+        # For example, loading the file using pandas
+        df = pd.read_excel(file)
+        leads_dict = {
+            i + 1: {
+                "name": row["name"],
+                "title": row["title"],
+                "email": row["email"]
+            } for i, row in df.iterrows()
+        }
 
-    master_agent = MasterAgent()
-    master_agent.run(data)
-    return jsonify({"status": "Success"}), 200
+
+        # Assuming processing and passing data to MasterAgent as needed
+        master_agent = MasterAgent()
+        data = {
+            "leads": leads_dict,
+            "product_description": product_description,
+            "company_name": company_name,
+            "email_address": email_address,
+            "first_name": first_name,
+            "last_name": last_name,
+        }
+        master_agent.run(data)
+
+        return jsonify({"status": "Success"}), 200
+    elif not file:
+        return Response("No file uploaded", status=400)
+    else:
+        return Response("Unsupported file type or other error", status=400)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in {'xlsx', 'xls'}
+
+
+if __name__ == "__main__":
+    backend_app.run(debug=True)

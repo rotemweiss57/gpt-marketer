@@ -3,11 +3,13 @@
 {% block title %}AIM - Welcome{% endblock %}
 
 {% block content %}
+<div class="row justify-content-center">
+<div class="col-md-6 mt-5">
 <div class="description">
     <p>Welcome to AIM, your automated solution for generating custom marketing emails. Provide us with your leads and product description, and we will take care of the rest.</p>
 </div>
 <div class="form-container">
-    <form action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" id="product-form">
         <div class="input-row">
             <div class="input-group">
                 <input type="text" name="first_name" placeholder="First Name" required>
@@ -22,6 +24,8 @@
         <input type="file" name="leads_file" accept=".csv, .xlsx" required>
         <button class="submit-btn submit-btn-2" type="submit">Send</button>
     </form>
+</div>
+</div>
 </div>
 
 {% endblock %}
