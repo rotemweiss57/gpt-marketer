@@ -23,4 +23,9 @@ class DesignerAgent:
 
     def run(self, email: dict):
         email = self.designer(email)
+        email = {
+            "email": email["email"],
+            "title": email["title"],
+            "email_content": email["email_content"]
+        }
         return email

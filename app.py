@@ -189,12 +189,12 @@ def submit_table_data():
 
     if response.status_code == 200:
         results = response.json()
-        # Assuming you want to pass these results to a template or further process them
-        return render_template('email_confirmation2.html', data=results)
+        path = results["path"]
+        # Store results in session or pass only necessary data for redirection
+        session['path'] = path  # Example, consider security implications
+        return render_template('email_confirmation2.html')
     else:
-        # Handle error or unsuccessful response
-        print("Error sending data to backend:", response.status_code)
-        return "Error processing your request", 500
+        return jsonify({'success': False, 'error': 'Error processing your request'}), 500
 
 
 
@@ -205,9 +205,19 @@ def preview_leads():
     email = request.args.get('email')
     return render_template('preview_leads.html', email=email, leads_list=leads_data)
 
+
 @app.route('/email_confirmation')
 def email_confirmation():
-    return render_template('email_confirmation.html')
+    path = session.get('path')  # Ensure 'path' is correctly set in the session
+    print(path)
+    # Load the CSV file into a pandas DataFrame
+    df = pd.read_csv(path)
+
+    # Convert the DataFrame to a list of dictionaries for easier handling in the template
+    data = df.to_dict(orient='records')
+
+    # Pass the 'data' list to your template
+    return render_template('email_confirmation2.html', data=data)
 
 
 # Define a function to run the frontend app

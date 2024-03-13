@@ -2,8 +2,13 @@
 {% block title %}streak Homepage{% endblock %}
 
 {% block content %}
-    <div style="color: white">
-        {{ data }}
-    </div>
-
+<div style="color: white">
+    {% for item in data %}
+        <div class="email-content">
+            <h2>{{ item['title'] }}</h2>
+            <p><strong>Email:</strong> {{ item['email'] }}</p>
+            <div>{{ item['email_content'] | safe }}</div>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
