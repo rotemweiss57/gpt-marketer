@@ -101,13 +101,14 @@ email_list = {'1': {'lead_name': "Mark Morrison",
               }
 
 @app.route('/')
+@app.route('/home')
 def index():
-    return render_template('index.html', index=True)
+    return render_template('index2.html')
 
 
 @app.route('/product')
 def product():
-    return render_template('product.html', index=False)
+    return render_template('product2.html')
 
 
 @app.route('/submit', methods=['POST'])
@@ -134,47 +135,64 @@ def submit():
         # Reading the Excel file
         df = pd.read_excel(filepath, engine='openpyxl')
 
-        ### 1. Data ready to be sent to the backend
-
         # Converting to the desired dictionary format:
         # format is  {'product_description': '0', 'user_company': '0', 'user_email': 'omer.n99@gmail.com',
         # 'user_first_name': '0', 'user_last_name': '0', 'leads': {1: {'name': 'Mark Morrison', 'email':
         # 'mark.morrison@deltacorp.com', 'title': 'Marketing Coordinator'}, 2:.....
-        data_dict = {}
-        main_dict = {}
-        main_dict['product_description'] = product_description
-        main_dict['user_company'] = company_name
-        main_dict['user_email'] = email_address
-        main_dict['user_first_name'] = first_name
-        main_dict['user_last_name'] = last_name
-        main_dict['leads'] = data_dict
 
-        for idx, row in df.iterrows():
-            data_dict[idx + 1] = {'name': row['name'], 'email': row['email'], 'title': row['title']}
+        data = {}
+        data['product_description'] = product_description
+        data['user_company'] = company_name
+        data['user_email'] = email_address
+        data['user_first_name'] = first_name
+        data['user_last_name'] = last_name
 
-        # Do something with data_dict
-        print("dictionary of leads:", main_dict)
-
-        ### 2. Data to be displayed in success.html
 
         # Convert DataFrame to a list of dictionaries
         leads_list = df.to_dict('records')
 
-        session['leads_data'] = leads_list
+
+        # Move data to submit table data route
+        user_info = data
+        session['user_info'] = user_info
 
         # Clean up the temporary file
         os.remove(filepath)
     else:
         leads_list = []
+
     # Redirect to the success page with the email address to display
-    return redirect(url_for('success', index=False, leads_list=leads_list))
+    return redirect(url_for('preview_leads', leads_list=leads_list))
 
 
-@app.route('/success')
-def success():
+@app.route('/submit-table-data', methods=['POST'])
+def submit_table_data():
+    data = request.json  # This is the data sent from the client
+    print("data: ", data)
+    user_info = session.get('user_info')
+    print("user info ---", user_info)
+
+    data_dict = {}
+    data_dict['product_description'] = user_info['product_description']
+    data_dict['user_company'] = user_info['user_company']
+    data_dict['user_email'] = user_info['user_email']
+    data_dict['user_first_name'] = user_info['user_first_name']
+    data_dict['user_last_name'] = user_info['user_last_name']
+
+    leads = {'leads': {i + 1: lead for i, lead in enumerate(data['leads'])}}
+
+    data_dict['leads'] = leads['leads']
+
+    # After processing the data, you can redirect
+    # Since redirects don't work directly with AJAX requests, you'll respond with a URL to redirect to
+    return render_template('email_confirmation.html', data=data_dict)
+
+
+@app.route('/preview_leads')
+def preview_leads():
     leads_data = session.get('leads_data', [])
     email = request.args.get('email')
-    return render_template('success.html', email=email, index=False, leads_list=leads_data)
+    return render_template('preview_leads.html', email=email, leads_list=leads_data)
 
 @app.route('/email_confirmation')
 def email_confirmation():

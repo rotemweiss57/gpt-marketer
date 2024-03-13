@@ -16,7 +16,7 @@ class MasterAgent:
     def run(self, data: dict):
 
         # Extract the queries from the input data
-        target = data.get("target")
+        target = data.get("leads")
         product_description = data.get("product_description")
         company_name = data.get("user_company")
         email_address = data.get("user_email")
@@ -25,7 +25,7 @@ class MasterAgent:
 
         # Create a list dict for each target
         emails = []
-        for lead in target[:1]:
+        for id, lead in target.items():
             email = {
 
                 # target data
