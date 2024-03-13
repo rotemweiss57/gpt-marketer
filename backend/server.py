@@ -21,9 +21,9 @@ def index():
 def generate_emails():
     data = request.json
     master_agent = MasterAgent()
-    results = master_agent.run(data)
+    path = master_agent.run(data)
 
-    return jsonify(results), 200
+    return jsonify({"path": path}), 200
 
 
 def allowed_file(filename):

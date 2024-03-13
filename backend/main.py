@@ -14,7 +14,6 @@ class MasterAgent:
         os.makedirs(self.output_dir, exist_ok=True)
 
     def run(self, data: dict):
-
         print(data)
         # Extract the queries from the input data
         target = data.get("leads")
@@ -43,7 +42,6 @@ class MasterAgent:
                 "user_last_name": last_name
             }
             emails.append(email)
-
 
         # Initialize agents
         search_agent = SearchAgent()
@@ -81,6 +79,14 @@ class MasterAgent:
         # turn results into a dictionary
         results = {i: results[i] for i in range(len(results))}
 
-        # save the results to a csv file
-        results_pd = pd.DataFrame(results)
-        results_pd.to_csv(f"{self.output_dir}/emails.csv")
+        file_name = "emails.csv"
+        path = os.path.join(self.output_dir, file_name)
+
+        # Convert results to a pandas DataFrame
+        results_pd = pd.DataFrame(results).T
+
+        # Save the DataFrame to CSV at the constructed path
+        results_pd.to_csv(path)
+
+        # Return the file path
+        return path
