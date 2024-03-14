@@ -11,105 +11,16 @@ from backend.server import backend_app
 app = Flask(__name__, template_folder='frontend/templates', static_folder='frontend/static')
 app.secret_key = 'your_secret_key'
 
-email_list = {'1': {'lead_name': "Mark Morrison",
-                    'lead_email': "mark.morrison@nvidia.com",
-                    'lead_subject': "Elevate Nvidia's Marketing Strategy with HubSpot CRM",
-                    'lead_body': "Dear Mark Morrison, As the Marketing Coordinator at Nvidia, "
-                                 "you're at the forefront of the fast-evolving tech industry, "
-                                 "where staying updated with the latest marketing innovations is crucial. "
-                                 "HubSpot CRM for Marketing is designed to propel your marketing efforts forward, "
-                                 "aligning perfectly with Nvidia's dynamic environment.We've been following Nvidia's "
-                                 "leadership in AI and your outstanding contributions to the field. It's clear that "
-                                 "your commitment to innovation is what sets Nvidia apart. HubSpot CRM for Marketing "
-                                 "is built to enhance your pioneering work, facilitating seamless marketing campaigns "
-                                 "across multiple channels. Our platform offers powerful tools for email marketing, social media,"
-                                 " SEO, content creation, and website analytics, empowering you to create personalized customer journeys."
-                                 " With features focused on lead generation, nurturing, and scoring, our aim is to help you attract "
-                                 "and convert prospects into dedicated customers, supporting Nvidia's growth goals. Integrating "
-                                 "with HubSpot's comprehensive suite offers a unified approach to all customer interactions, "
-                                 "enhancing satisfaction and fostering growth. In light of Nvidia's recent advancements and the "
-                                 "competitive landscape, leveraging our state-of-the-art solution could be a strategic move. "
-                                 "I would love the opportunity to discuss how HubSpot CRM for Marketing can elevate Nvidia's "
-                                 "marketing efforts and support your continued market leadership. Please contact me at "
-                                 "rotem@hubspot.com to schedule a conversation. Looking forward to potentially collaborating "
-                                 "and driving Nvidia's marketing to new heights. Best regards, Rotem Weiss HubSpot"},
-              '2': {'lead_name': "Mark Morrison",
-                    'lead_email': "mark.morrison@nvidia.com",
-                    'lead_subject': "Elevate Nvidia's Marketing Strategy with HubSpot CRM",
-                    'lead_body': "Dear Mark Morrison, As the Marketing Coordinator at Nvidia, "
-                                 "you're at the forefront of the fast-evolving tech industry, "
-                                 "where staying updated with the latest marketing innovations is crucial. "
-                                 "HubSpot CRM for Marketing is designed to propel your marketing efforts forward, "
-                                 "aligning perfectly with Nvidia's dynamic environment.We've been following Nvidia's "
-                                 "leadership in AI and your outstanding contributions to the field. It's clear that "
-                                 "your commitment to innovation is what sets Nvidia apart. HubSpot CRM for Marketing "
-                                 "is built to enhance your pioneering work, facilitating seamless marketing campaigns "
-                                 "across multiple channels. Our platform offers powerful tools for email marketing, social media,"
-                                 " SEO, content creation, and website analytics, empowering you to create personalized customer journeys."
-                                 " With features focused on lead generation, nurturing, and scoring, our aim is to help you attract "
-                                 "and convert prospects into dedicated customers, supporting Nvidia's growth goals. Integrating "
-                                 "with HubSpot's comprehensive suite offers a unified approach to all customer interactions, "
-                                 "enhancing satisfaction and fostering growth. In light of Nvidia's recent advancements and the "
-                                 "competitive landscape, leveraging our state-of-the-art solution could be a strategic move. "
-                                 "I would love the opportunity to discuss how HubSpot CRM for Marketing can elevate Nvidia's "
-                                 "marketing efforts and support your continued market leadership. Please contact me at "
-                                 "rotem@hubspot.com to schedule a conversation. Looking forward to potentially collaborating "
-                                 "and driving Nvidia's marketing to new heights. Best regards, Rotem Weiss HubSpot"},
-              '3': {'lead_name': "Mark Morrison",
-                    'lead_email': "mark.morrison@nvidia.com",
-                    'lead_subject': "Elevate Nvidia's Marketing Strategy with HubSpot CRM",
-                    'lead_body': "Dear Mark Morrison, As the Marketing Coordinator at Nvidia, "
-                                 "you're at the forefront of the fast-evolving tech industry, "
-                                 "where staying updated with the latest marketing innovations is crucial. "
-                                 "HubSpot CRM for Marketing is designed to propel your marketing efforts forward, "
-                                 "aligning perfectly with Nvidia's dynamic environment.We've been following Nvidia's "
-                                 "leadership in AI and your outstanding contributions to the field. It's clear that "
-                                 "your commitment to innovation is what sets Nvidia apart. HubSpot CRM for Marketing "
-                                 "is built to enhance your pioneering work, facilitating seamless marketing campaigns "
-                                 "across multiple channels. Our platform offers powerful tools for email marketing, social media,"
-                                 " SEO, content creation, and website analytics, empowering you to create personalized customer journeys."
-                                 " With features focused on lead generation, nurturing, and scoring, our aim is to help you attract "
-                                 "and convert prospects into dedicated customers, supporting Nvidia's growth goals. Integrating "
-                                 "with HubSpot's comprehensive suite offers a unified approach to all customer interactions, "
-                                 "enhancing satisfaction and fostering growth. In light of Nvidia's recent advancements and the "
-                                 "competitive landscape, leveraging our state-of-the-art solution could be a strategic move. "
-                                 "I would love the opportunity to discuss how HubSpot CRM for Marketing can elevate Nvidia's "
-                                 "marketing efforts and support your continued market leadership. Please contact me at "
-                                 "rotem@hubspot.com to schedule a conversation. Looking forward to potentially collaborating "
-                                 "and driving Nvidia's marketing to new heights. Best regards, Rotem Weiss HubSpot"},
-              '4': {'lead_name': "Mark Morrison",
-                    'lead_email': "mark.morrison@nvidia.com",
-                    'lead_subject': "Elevate Nvidia's Marketing Strategy with HubSpot CRM",
-                    'lead_body': "Dear Mark Morrison, As the Marketing Coordinator at Nvidia, "
-                                 "you're at the forefront of the fast-evolving tech industry, "
-                                 "where staying updated with the latest marketing innovations is crucial. "
-                                 "HubSpot CRM for Marketing is designed to propel your marketing efforts forward, "
-                                 "aligning perfectly with Nvidia's dynamic environment.We've been following Nvidia's "
-                                 "leadership in AI and your outstanding contributions to the field. It's clear that "
-                                 "your commitment to innovation is what sets Nvidia apart. HubSpot CRM for Marketing "
-                                 "is built to enhance your pioneering work, facilitating seamless marketing campaigns "
-                                 "across multiple channels. Our platform offers powerful tools for email marketing, social media,"
-                                 " SEO, content creation, and website analytics, empowering you to create personalized customer journeys."
-                                 " With features focused on lead generation, nurturing, and scoring, our aim is to help you attract "
-                                 "and convert prospects into dedicated customers, supporting Nvidia's growth goals. Integrating "
-                                 "with HubSpot's comprehensive suite offers a unified approach to all customer interactions, "
-                                 "enhancing satisfaction and fostering growth. In light of Nvidia's recent advancements and the "
-                                 "competitive landscape, leveraging our state-of-the-art solution could be a strategic move. "
-                                 "I would love the opportunity to discuss how HubSpot CRM for Marketing can elevate Nvidia's "
-                                 "marketing efforts and support your continued market leadership. Please contact me at "
-                                 "rotem@hubspot.com to schedule a conversation. Looking forward to potentially collaborating "
-                                 "and driving Nvidia's marketing to new heights. Best regards, Rotem Weiss HubSpot"},
-              }
 
 @app.route('/')
 @app.route('/home')
 def index():
-    return render_template('index2.html')
+    return render_template('index.html')
 
 
 @app.route('/product')
 def product():
-    return render_template('product2.html')
+    return render_template('product.html')
 
 
 @app.route('/submit', methods=['POST'])
@@ -151,7 +62,7 @@ def submit():
 
         # Convert DataFrame to a list of dictionaries
         leads_list = df.to_dict('records')
-
+        session['leads_data'] = leads_list
 
         # Move data to submit table data route
         user_info = data
@@ -192,7 +103,7 @@ def submit_table_data():
         path = results["path"]
         # Store results in session or pass only necessary data for redirection
         session['path'] = path  # Example, consider security implications
-        return render_template('email_confirmation2.html')
+        return render_template('email_confirmation.html')
     else:
         return jsonify({'success': False, 'error': 'Error processing your request'}), 500
 
@@ -203,13 +114,14 @@ def submit_table_data():
 def preview_leads():
     leads_data = session.get('leads_data', [])
     email = request.args.get('email')
+
     return render_template('preview_leads.html', email=email, leads_list=leads_data)
 
 
 @app.route('/email_confirmation')
 def email_confirmation():
     path = session.get('path')  # Ensure 'path' is correctly set in the session
-    print(path)
+
     # Load the CSV file into a pandas DataFrame
     df = pd.read_csv(path)
 
@@ -217,7 +129,7 @@ def email_confirmation():
     data = df.to_dict(orient='records')
 
     # Pass the 'data' list to your template
-    return render_template('email_confirmation2.html', data=data)
+    return render_template('email_confirmation.html', data=data)
 
 
 # Define a function to run the frontend app

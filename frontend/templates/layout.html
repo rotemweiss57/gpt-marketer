@@ -11,36 +11,36 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-            <!-- Group logo and brand name together inside .navbar-brand -->
-            <a class="navbar-brand" href="{{ url_for('index') }}">
-                <img src="{{ url_for('static', filename='images/icons8-courier-40.png') }}" alt="AIM Logo" class="logo">
-                AIM
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link circle-border" href="{{ url_for('product') }}">Try it now</a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar  fixed-top navbar-expand-lg navbar-dark navbar-color">
+        <a class="navbar-brand navbar-brand-text ml-3" href="/">streak</a>
+         <!--
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
         </div>
+        -->
+        <a class="nav-link try-now mr-5" href="{{ url_for('product') }}">Try it now</a>
     </nav>
-    {% if index %}
-        {% block content_index %}
-         <!-- Content will go here -->
-        {% endblock %}
-    {% else %}
-        <div class="container-fluid">
-            {% block content %}
-            <!-- Content will go here -->
-            {% endblock %}
-        </div>
-    {% endif %}
+    <div class="container-fluid">
+            <div class="row">
+                <!-- Possible Sidebar -->
+                <div class="col-md-2"></div>
+                    <!-- Main -->
+                    <div class="col-md-8 mt-5">
+                        {% block content %}
+                        <!-- Content will go here -->
+                        {% endblock %}
+                    </div>
+                <!-- Possible Sidebar -->
+                <div class="col-md-2"></div>
+            </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
