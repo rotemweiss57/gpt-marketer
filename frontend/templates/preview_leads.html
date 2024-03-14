@@ -1,13 +1,13 @@
-{% extends "layout2.html" %}
+{% extends "layout.html" %}
 
 {% block content %}
+
 <div class="justify-content-center">
     <div class="success-message title">
         <p class="subtitle-3">
             Your submission was successful!
         </p>
     </div>
-
     {% if leads_list %}
         <div class="title-2"><p>Verify and Edit your Leads</p></div>
         <div class="table-card">
@@ -43,7 +43,7 @@
 
         <!-- Centering the button -->
         <div class="d-flex justify-content-center mt-3">
-            <button id="submitData">Submit</button>
+            <button id="submitData" onclick="submitData();">Submit</button>
             <a class="btn btn-primary" href="{{ url_for('email_confirmation') }}">See The Results &gt;</a>
         </div>
     {% else %}

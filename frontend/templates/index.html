@@ -1,44 +1,35 @@
 {% extends "layout.html" %}
+{% block title %}streak Homepage{% endblock %}
 
-{% block title %}AIM - Welcome{% endblock %}
-
-{% block content_index %}
-<div class="hero-section">
-    <div class="centered">
-        <h1>Welcome to AIM</h1>
-        <p>The future of automated marketing emails, powered by AI.</p>
+{% block content %}
+    <div class="row justify-content-center">
+        <h1 class="title">
+            Discover the Power <br>of <span class="streak">streak</span>
+        </h1>
     </div>
-    <div>
-        <img class="index-img" src="{{ url_for('static', filename='images/aim-index-image.png') }}" alt="email generation depiction">
+    <div class="row">
+        <div class="container">
+            <div class="col homepage-anim mt-4">
+            </div>
+            <div class="subtitle">
+                Meet Streak, the all-in-one platform that revolutionizes email marketing with the power of AI.
+                Experience personalized, engaging emails crafted faster and easier, taking your campaigns to
+                the next level.
+            </div>
+            <div class="subtitle">
+                Rest of Information. Rest of Information. Rest of Information. Rest of Information. Rest of Information.
+                Rest of Information. Rest of Information. Rest of Information. Rest of Information. Rest of Information.
+            </div>
+            <div class="subtitle">
+                Rest of Information. Rest of Information. Rest of Information. Rest of Information. Rest of Information.
+                Rest of Information. Rest of Information. Rest of Information. Rest of Information. Rest of Information.
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="about-aim">
-    <h2>What is AIM?</h2>
-    <p>AIM, or AI Marketer, is a cutting-edge platform that harnesses the power of Large Language Models to generate customized marketing emails. By conducting in-depth research on the leads you provide, AIM creates personalized, smart, and beautifully crafted marketing messages that resonate on a personal level.</p>
-</div>
+            <div class="row justify-content-center">
+                <a class="nav-link try-now mt-4 bigger-button" href="{{ url_for('product') }}">Try it now</a>
+            </div>
 
-<div class="how-it-works">
-    <h2>How Does AIM Work?</h2>
-    <ol>
-        <li><strong>Input Your Leads:</strong> Upload your list of leads to AIM's platform.</li>
-        <li><strong>AI-Powered Research:</strong> AIM analyzes your leads, gathering insights to tailor each message.</li>
-        <li><strong>Customized Email Generation:</strong> Based on the research, AIM crafts unique marketing emails that feel personal and engaging.</li>
-    </ol>
-</div>
-
-<div class="benefits">
-    <h2>Why Choose AIM?</h2>
-    <ul>
-        <li><strong>Personalization at Scale:</strong> Send marketing emails that are tailored to each recipient, making them more effective and personal.</li>
-        <li><strong>Save Time:</strong> Let AIM do the heavy lifting of researching and writing marketing emails, freeing up your time for other tasks.</li>
-        <li><strong>Improve Engagement:</strong> Emails crafted by AIM are designed to increase engagement, open rates, and conversions.</li>
-    </ul>
-</div>
-
-<div class="get-started">
-    <h2>Ready to Transform Your Email Marketing?</h2>
-    <p><a href="{{ url_for('product') }}" class="circle-border-2">Try it Now</a></p>
-</div>
 
 {% endblock %}

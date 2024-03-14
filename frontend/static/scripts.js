@@ -1,32 +1,37 @@
 $(document).ready(function() {
-    $('#submitData').on('click', function() {
-        console.log("started listening");
-        const data = $('#editableTable tbody tr').map(function() {
-            const $row = $(this);
-            return {
-                name: $row.find('td:eq(0)').text(), // eq(0) gets the first <td>
-                email: $row.find('td:eq(1)').text(), // eq(1) gets the second <td>
-                title: $row.find('td:eq(2)').text(), // eq(2) gets the third <td>
-            };
-        }).get(); // .get() converts the jQuery object into a regular array
 
-        // Send the data to the Flask route
-        $.ajax({
-            url: '/submit-table-data',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({leads: data}),
-            success: function(data) {
-                console.log("successful AJAX")
-                if(data.redirect) {
-                    // Redirect to the URL provided by Flask
-                    window.location.href = data.redirect;
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', error);
+    $('#submitData').on('click', function() {
+    const data = $('#editableTable tbody tr').map(function() {
+        const $row = $(this);
+        return {
+            name: $row.find('td:eq(0)').text(), // eq(0) gets the first <td>
+            email: $row.find('td:eq(1)').text(), // eq(1) gets the second <td>
+            title: $row.find('td:eq(2)').text(), // eq(2) gets the third <td>
+        };
+    }).get(); // .get() converts the jQuery object into a regular array
+
+    // Send the data to the Flask route
+    $.ajax({
+        url: '/submit-table-data',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({leads: data}),
+        success: function(data) {
+            console.log("successful AJAX")
+            if(data.redirect) {
+                // Redirect to the URL provided by Flask
+                window.location.href = data.redirect;
             }
-        });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+        }
+    });
+});
+
+    document.getElementById('file-upload').addEventListener('change', function() {
+    let fileName = this.files && this.files.length ? this.files[0].name : "No file chosen...";
+    document.getElementById('file-upload-name').textContent = fileName;
     });
 });
 document.addEventListener('DOMContentLoaded', function() {
@@ -62,10 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.getElementById('file-upload').addEventListener('change', function() {
-    let fileName = this.files && this.files.length ? this.files[0].name : "No file chosen...";
-    document.getElementById('file-upload-name').textContent = fileName;
-});
+
 
 
 

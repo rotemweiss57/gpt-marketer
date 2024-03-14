@@ -1,47 +1,24 @@
 {% extends "layout.html" %}
+{% block title %}streak Confirmation{% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <p>{{ data }}</p>
-        <div class="row subtitle">Email Drafts</div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-12">
-                    {% for id, email in emails.items() %}
-                    <div class="output-item mb-4">
-                        <!-- Email to lead_name -->
-                        <div class="form-group">
-                            <label><strong>Email to {{ email['lead_name'] }}</strong></label>
-                        </div>
-                        <!-- Email Address -->
-                        <div class="form-group row">
-                            <label for="emailAddress{{ id }}" class="col-2 col-form-label"><strong>Address</strong></label>
-                            <div class="col-10">
-                                <input type="text" readonly class="form-control-plaintext" value="{{ email['lead_email'] }}">
-                            </div>
-                        </div>
-                        <!-- Subject -->
-                        <div class="form-group row">
-                            <label for="emailSubject{{ id }}" class="col-2 col-form-label"><strong>Subject</strong></label>
-                            <div class="col-sm-10">
-                                <input id="emailSubject{{ id }}" class="form-control" readonly value="{{ email['lead_subject'] }}">
-                            </div>
-                        </div>
-                        <!-- Body -->
-                        <div class="form-group row">
-                            <label for="emailBody{{ id }}" class="col-2 col-form-label"><strong>Body</strong></label>
-                            <div class="col-sm-10">
-                                <textarea id="emailBody{{ id }}" class="form-control" readonly>{{ email['lead_body'] }}</textarea>
-                            </div>
-                        </div>
-                        <!-- Action Buttons -->
-                        <div class="row justify-content-center">
-                            <button type="button" class="btn btn-danger col-auto">Delete</button>
-                            <button type="button" class="btn btn-warning col-auto mx-2">Edit</button>
-                            <button type="button" class="btn btn-success col-auto">Accept and Send</button>
-                        </div>
+
+        <div style="color: white">
+            {% for item in data %}
+                <div class="row card">
+                    <div class="email-content">
+                        <h2>{{ item['subject'] }}</h2>
+                        <hr style="border: 0.5px solid lightgrey">
+                        <p><strong>Email to:</strong> {{ item['email'] }}</p>
+                        <div>{{ item['email_content'] | safe }}</div>
                     </div>
-                    {% endfor %}
+                    <hr class="my-2">
+                    <div class="row justify-content-center">
+                        <button class="delete-btn mr-2">Delete</button>
+                        <button class="edit-btn btn-warning mr-2">Edit Fields</button>
+                        <button class="confirm-btn btn-primary">Confirm and Send</button>
+                    </div>
                 </div>
-            </div>
-    </div>
+            {% endfor %}
+        </div>
 {% endblock %}

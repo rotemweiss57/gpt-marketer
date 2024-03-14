@@ -1,31 +1,39 @@
 {% extends "layout.html" %}
-
-{% block title %}AIM - Welcome{% endblock %}
+{% block title %}streak Product Page{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
-<div class="col-md-6 mt-5">
-<div class="description">
-    <p>Welcome to AIM, your automated solution for generating custom marketing emails. Provide us with your leads and product description, and we will take care of the rest.</p>
-</div>
-<div class="form-container">
-    <form method="post" enctype="multipart/form-data" id="product-form">
-        <div class="input-row">
-            <div class="input-group">
-                <input type="text" name="first_name" placeholder="First Name" required>
-            </div>
-            <div class="input-group">
-                <input type="text" name="last_name" placeholder="Last Name" required>
-            </div>
+    <div class="subtitle-2">
+        Fill out your company's details and the description of your product.<br>
+        Additionally, include a list of leads you would like to generate emails for.
+    </div>
+    <div class="row card">
+        <div class="form-container">
+            <form action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data"><!--id="product-form" for javascript-->
+                <div class="input-row">
+                    <div class="input-group">
+                        <input type="text" name="first_name" placeholder="First Name" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" name="last_name" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <input type="text" name="company_name" placeholder="Company Name" required>
+                <input type="email" name="email_address" placeholder="Your Email Address" required>
+                <textarea name="product_description" placeholder="Product Description" required></textarea>
+                <div class="row mt-2">
+                    <p class="form-instructions-small">
+                        Upload an Excel of your leads (with 3 columns: name, title, and email).
+                    </p>
+                    <label class="file-upload-container" for="file-upload">
+                        <input type="file" name="leads_file" accept=".csv, .xlsx" id="file-upload" required hidden>
+                        <span class="file-custom-button">Choose File</span>
+                        <span class="file-upload-name" id="file-upload-name">No file chosen...</span>
+                    </label>
+                </div>
+                <hr class="form-hr">
+                <button class="submit-btn submit-btn-2 mt-2" type="submit">Submit</button>
+            </form>
         </div>
-        <input type="text" name="company_name" placeholder="Company Name" required>
-        <input type="email" name="email_address" placeholder="Your Email Address" required>
-        <textarea name="product_description" placeholder="Product Description" required></textarea>
-        <input type="file" name="leads_file" accept=".csv, .xlsx" required>
-        <button class="submit-btn submit-btn-2" type="submit">Send</button>
-    </form>
-</div>
-</div>
-</div>
+    </div>
 
 {% endblock %}
