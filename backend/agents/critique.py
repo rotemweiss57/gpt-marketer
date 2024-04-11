@@ -19,7 +19,7 @@ class CritiqueAgent:
     def critique(self, article: dict):
         email_content = article['email_content']
         critique_result = self.spam_classifier.classify_email(email_content)
-        if critique_result <= 0.4:
+        if critique_result <= 0.2:
 
             prompt = [{
                 "role": "system",
