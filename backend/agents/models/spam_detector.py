@@ -18,11 +18,6 @@ stop_words = set(stopwords.words("english"))
 df["text"] = df["text"].apply(lambda x: [word for word in x if word not in stop_words])
 df["text"] = df["text"].apply(lambda x: " ".join(x))
 
-# # Feature Extraction
-# vectorizer = CountVectorizer()
-# X = vectorizer.fit_transform(df["text"])
-# y = df["spam"]
-
 # Feature Extraction using TF-IDF
 vectorizer = TfidfVectorizer(stop_words='english', ngram_range=(1, 2))  # Using bigrams along with unigrams
 X = vectorizer.fit_transform(df["text"])
