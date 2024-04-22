@@ -1,0 +1,8 @@
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/.gitignore
+/.idea/gpt-marketer.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/backend/agents/writer.py
+/gpt-marketer/
