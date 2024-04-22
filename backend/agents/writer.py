@@ -28,8 +28,8 @@ class WriterAgent:
         prompt = [{
             "role": "system",
             "content": "You are a marketing email writer. Your sole purpose is to write a well-written personalized"
-                       "marketing email about my product based on provided context and sources.
-                       "Write less than 150 words, and add new line tagging so the text would be styled for HTML"\n"
+                       "marketing email about my product based on provided context and sources."
+                       "Write less than 150 words, and add new line tagging so the text would be styled for HTML\n"
         }, {
             "role": "user",
             "content": f"{str(email)}\n"
@@ -55,7 +55,7 @@ class WriterAgent:
             "role": "system",
             "content": "You are editing a marketing email. Your sole purpose is to edit a personalized and "
                        "engaging email about a product topic based on given critique\n"
-                       "Write less than 150 words, and add new line tagging so the text would be styled for HTML"\n"
+                       "Write less than 150 words, and add new line tagging so the text would be styled for HTML\n"
         }, {
             "role": "user",
             "content": f"subject: {email['subject']}\n"

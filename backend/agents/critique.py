@@ -26,7 +26,7 @@ class CritiqueAgent:
                 "content": "You are a marketing email writing critique. Your sole purpose is to provide feedback on "
                            "a written article so the writer will know what to fix to increase the chances of their "
                            "target reader interacting with the email.\n"
-                           "Write less than 150 words, and add new line tagging so the text would be styled for HTML"\n"
+                           "Write less than 150 words, and add new line tagging so the text would be styled for HTML\n"
             }, {
                 "role": "user",
                 "content": f"Today's date is {datetime.now().strftime('%d/%m/%Y')}\n."
@@ -48,7 +48,7 @@ class CritiqueAgent:
                            f"target reader interacting with the email. Additionally, the likelihood of this email "
                            f"being classified as spam is {critique_result * 100}, make additional recommendations to "
                            f"the writer to reduce this likelihood to under 40%. \n"
-                           f"Write less than 150 words, and add new line tagging so the text would be styled for HTML"\n"
+                           f"Write less than 150 words, and add new line tagging so the text would be styled for HTML\n"
             }, {
                 "role": "user",
                 "content": f"Today's date is {datetime.now().strftime('%d/%m/%Y')}\n."
