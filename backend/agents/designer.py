@@ -1,6 +1,7 @@
 import os
+from io import BytesIO
 from tkinter import Image
-
+import requests
 import numpy as np
 from tavily import TavilyClient
 import os
@@ -33,7 +34,7 @@ class DesignerAgent:
         email["html"] = html_template
         return email
 
-    def load_and_preprocess_image(image_url, target_height=256, background_color=(255, 255, 255)):
+    def load_and_preprocess_image(self, image_url, target_height=256, background_color=(255, 255, 255)):
         response = requests.get(image_url)
         image = Image.open(BytesIO(response.content))
         image = image.convert('RGB')
@@ -55,19 +56,17 @@ class DesignerAgent:
         return image_array
 
 
-    def combine_images(logo1, xmark, logo2):
+    def combine_images(self, logo1, xmark, logo2):
         combined_image = np.concatenate([logo1, xmark, logo2], axis=1)
         return combined_image
 
     def run(self, email: dict):
-        # Use the search agent to get logo URLs
-        email_with_logos = search_agent.run(email)
 
         # Generate composite image with the obtained logo URLs
-        logo1_url = email_with_logos['image1']
-        logo2_url = email_with_logos['image2']
+        logo1_url = email['logo'] # our logo
+        logo2_url = email["image"] # target logo
         xmark_url = ('https://images.squarespace-cdn.com/content/v1/55ece940e4b048d1ed401c11/1450136257542-4DATU4KR'
-                     'B70MDENGJXJX/X%3A++The+Unknown')
+                     'B70MDENGJXJX/X%3A++The+Unknown') # xmark image
 
         logo1 = self.load_and_preprocess_image(logo1_url)
         logo2 = self.load_and_preprocess_image(logo2_url)

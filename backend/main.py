@@ -22,6 +22,7 @@ class MasterAgent:
         email_address = data.get("user_email")
         first_name = data.get("user_first_name")
         last_name = data.get("user_last_name")
+        logo = data.get("logo")
 
         # Create a list dict for each target
         emails = []
@@ -33,6 +34,7 @@ class MasterAgent:
                 "email": lead.get("email"),
                 "title": lead.get("title"),
                 "domain": lead.get("email").split("@")[1],
+                "logo": logo,
 
                 # user data
                 "product_description": product_description,
