@@ -1,6 +1,6 @@
 import os
 from io import BytesIO
-from tkinter import Image
+from PIL import Image
 import requests
 import numpy as np
 from tavily import TavilyClient
@@ -63,29 +63,34 @@ class DesignerAgent:
     def run(self, email: dict):
 
         # Generate composite image with the obtained logo URLs
-        logo1_url = email['logo'] # our logo
-        logo2_url = email["image"] # target logo
+        logo1_url = email['logo']  # our logo
+        logo2_url = email["image"]  # target logo
         xmark_url = ('https://images.squarespace-cdn.com/content/v1/55ece940e4b048d1ed401c11/1450136257542-4DATU4KR'
                      'B70MDENGJXJX/X%3A++The+Unknown') # xmark image
 
         logo1 = self.load_and_preprocess_image(logo1_url)
+
         logo2 = self.load_and_preprocess_image(logo2_url)
+
         xmark = self.load_and_preprocess_image(xmark_url) #need to figure out how to account for this
                                                           #maybe add separate parameter to dictionary?
 
+
         # Combine images
-        composite_image_array = self.combine_images([logo1, xmark, logo2])
+        composite_image_array = self.combine_images(logo1, xmark, logo2)
 
         # Save the composite image
-        image_filename = 'composite.png'
+        image_filename = f'composite_{email["title"]}.png'
         composite_image_path = os.path.join(self.output_dir, image_filename)
         Image.fromarray((composite_image_array * 255).astype(np.uint8)).save(composite_image_path)
+        #print(composite_image_path)
 
         # Update the HTML with the new image
         html_template = self.load_html_template()
         content = email["email_content"]
         html_template = html_template.replace("{{content}}", content)
-        html_template = html_template.replace("{{image}}", composite_image_path)
+        # html_template = html_template.replace("{{image}}", composite_image_path)
+        #print(html_template)
 
         # Write the HTML to a file
         output_html_path = os.path.join(self.output_dir, 'email.html')
@@ -93,4 +98,4 @@ class DesignerAgent:
             f.write(html_template)
 
         # Return the path to the HTML file or the HTML content itself
-        return email_with_logos
+        return email

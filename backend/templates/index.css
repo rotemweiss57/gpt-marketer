@@ -27,3 +27,9 @@ p {
     padding-top: 20px;
     border-top: 1px solid #ddd;
 }
+
+.main-image {
+    width: 100px;  /* Set the width of the image */
+    height: 50px; /* Set the height of the image */
+    object-fit: cover; /* Ensures the image covers the set area without stretching. */
+}
