@@ -22,7 +22,8 @@ class MasterAgent:
         email_address = data.get("user_email")
         first_name = data.get("user_first_name")
         last_name = data.get("user_last_name")
-        logo = data.get("logo", "https://www.hatchwise.com/wp-content/uploads/2022/08/Amazon-Logo-2000-present-1024x576.jpeg")
+        logo = data.get("logo", None)
+        # print(logo)
 
         # Create a list dict for each target
         emails = []
