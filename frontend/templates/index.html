@@ -9,19 +9,22 @@
     </div>
     <div class="row">
         <div class="container">
-            <div class="col homepage-anim mt-4">
+                <h3 class="example-main">An example</h3>
+                <img class="img-main" height="800" width="800" src="{{ url_for('static', filename='images/example.png') }}">
             </div>
-            <div class="subtitle">
+        <div class="subtitle">
                 Meet AIM, the all-in-one platform that revolutionizes email marketing with the power of AI.
                 Experience personalized, engaging emails crafted faster and easier, taking your campaigns to
                 the next level.
-            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
         </div>
     </div>
 
-            <div class="row justify-content-center">
-                <a class="nav-link try-now mt-4 bigger-button" href="{{ url_for('product') }}">Try it now</a>
-            </div>
+
 
 
 {% endblock %}

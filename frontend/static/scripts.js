@@ -1,33 +1,45 @@
 $(document).ready(function() {
-
     $('#submitData').on('click', function() {
-    const data = $('#editableTable tbody tr').map(function() {
-        const $row = $(this);
-        return {
-            name: $row.find('td:eq(0)').text(), // eq(0) gets the first <td>
-            email: $row.find('td:eq(1)').text(), // eq(1) gets the second <td>
-            title: $row.find('td:eq(2)').text(), // eq(2) gets the third <td>
-        };
-    }).get(); // .get() converts the jQuery object into a regular array
+        // Show the loading message and disable the results button
+        $('#loadingMessage').show();
+        $('#resultsButton').addClass('disabled');
 
-    // Send the data to the Flask route
-    $.ajax({
-        url: '/submit-table-data',
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({leads: data}),
-        success: function(data) {
-            console.log("successful AJAX")
-            if(data.redirect) {
-                // Redirect to the URL provided by Flask
-                window.location.href = data.redirect;
+        // Fetch the data from the table rows
+        const data = $('#editableTable tbody tr').map(function() {
+            const $row = $(this);
+            return {
+                name: $row.find('td:eq(0)').text(),
+                email: $row.find('td:eq(1)').text(),
+                title: $row.find('td:eq(2)').text(),
+            };
+        }).get();
+
+        // AJAX request to the server
+        $.ajax({
+            url: '/submit-table-data',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({leads: data}),
+            success: function(data) {
+                // Hide the loading message
+                $('#loadingMessage').hide();
+
+                // Enable and update the results button
+                $('#resultsButton').removeClass('disabled');
+
+                // Redirect if needed
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+            },
+            error: function(xhr, status, error) {
+                // Hide the loading message on error
+                $('#loadingMessage').hide();
+
+                console.error('Error:', error);
             }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
-        }
+        });
     });
-});
 
     document.getElementById('file-upload').addEventListener('change', function() {
     let fileName = this.files && this.files.length ? this.files[0].name : "No file chosen...";

@@ -42,9 +42,12 @@
         </div>
 
         <!-- Centering the button -->
+        <div id="loadingMessage" style="display: none; text-align: center;">
+            <p>Loading... Please wait. The results button will activate shortly (less than a minute).</p>
+        </div>
         <div class="d-flex justify-content-center mt-3">
             <button id="submitData" onclick="submitData();">Submit</button>
-            <a class="btn btn-primary" href="{{ url_for('email_confirmation') }}">See The Results &gt;</a>
+            <a class="btn btn-primary disabled" id="resultsButton" href="{{ url_for('email_confirmation') }}">See The Results &gt;</a>
         </div>
     {% else %}
         <p>No leads data to display.</p>

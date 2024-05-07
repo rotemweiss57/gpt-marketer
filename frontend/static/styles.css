@@ -3,6 +3,7 @@
 body {
     background-color: #101827;
     padding-top: 60px;
+    color: white;
 }
 
 /* Navbar */
@@ -42,6 +43,9 @@ body {
 }
 
 .bigger-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 250px;
     height: 50px;
     padding-top: 6px;
@@ -301,3 +305,18 @@ td[contenteditable="true"]:hover {
     margin-bottom: 10px;
 }
 
+.img-main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.example-main {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
