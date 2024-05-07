@@ -36,6 +36,7 @@ class WriterAgent:
 
                        f"Your task is to write a personalized and engaging email about a product topic based on the "
                        f"given context and news sources.\n"
+                       f"This is the recipient: {email['name']}, the sender: {email['user_first_name']} {email['user_last_name']}"
                        f"please return nothing but a JSON in the following format:\n"
                        f"{sample_json}\n"
 

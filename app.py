@@ -30,6 +30,7 @@ def submit():
     email_address = request.form['email_address']
     product_description = request.form['product_description']
     leads_file = request.files['leads_file']
+    logo = request.form['logo']
 
     if leads_file:
         # Define the directory path
@@ -57,6 +58,7 @@ def submit():
         data['user_email'] = email_address
         data['user_first_name'] = first_name
         data['user_last_name'] = last_name
+        data['logo'] = logo
 
 
         # Convert DataFrame to a list of dictionaries
@@ -87,6 +89,7 @@ def submit_table_data():
     data_dict['user_email'] = user_info['user_email']
     data_dict['user_first_name'] = user_info['user_first_name']
     data_dict['user_last_name'] = user_info['user_last_name']
+    data_dict['logo'] = user_info['logo']
 
     leads = {'leads': {i + 1: lead for i, lead in enumerate(data['leads'])}}
 
