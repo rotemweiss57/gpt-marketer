@@ -10,7 +10,7 @@ from .agents import SearchAgent, WriterAgent, CritiqueAgent, DesignerAgent
 
 class MasterAgent:
     def __init__(self):
-        self.output_dir = f"outputs/run_{int(time.time())}"
+        self.output_dir = f"frontend/static/outputs/run_{int(time.time())}"
         os.makedirs(self.output_dir, exist_ok=True)
 
     def run(self, data: dict):

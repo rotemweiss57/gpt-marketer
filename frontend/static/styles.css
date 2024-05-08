@@ -82,8 +82,16 @@ body {
     color: white;
     font-size: 21px;
     text-align: center;
-    padding-top: 8%;
+    /*padding-top: 8%;*/
     transition: transform 1s ease;
+}
+.main-container{
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    color: black;
+    font-size: 21px;
+    text-align: center;
 }
 .title {
     text-align: center;
@@ -116,7 +124,7 @@ body {
 
 /*** Product Page ***/
 .card {
-    background-color: #444; /* Slightly lighter than body for contrast */
+    background-color: white;
     border-radius: 8px;
     padding: 20px;
     max-width: 600px; /* Adjust based on preference */
@@ -137,7 +145,7 @@ input[type="file"] {
     margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #555; /* Subtle border */
-    background-color: #555; /* Lighter input background */
+    background-color: #cfcfcf; /* Lighter input background */
     color: #fff; /* Light text */
 }
 input[type="name"] {
@@ -147,7 +155,7 @@ input[type="name"] {
     margin-top: 5px;
     border-radius: 5px;
     border: 1px solid #555; /* Subtle border */
-    background-color: #555; /* Lighter input background */
+    background-color: #cfcfcf; /* Lighter input background */
     color: #fff; /* Light text */
 }
 
@@ -208,7 +216,7 @@ textarea {
 
 .form-instructions-small {
     font-size: 16px;
-    color: lightgrey;
+    color: #cfcfcf;
     padding: 2px 5px 2px 20px;
 }
 .form-hr {
@@ -216,9 +224,8 @@ textarea {
 }
 .subtitle-2 {
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
-    padding-top: 8%;
 }
 
 /*** Preview Leads Page ***/
