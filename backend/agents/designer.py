@@ -34,62 +34,66 @@ class DesignerAgent:
         email["html"] = html_template
         return email
 
-    # def load_and_preprocess_image(self, image_url, target_height=256, background_color=(255, 255, 255)):
-    #     response = requests.get(image_url)
-    #     image = Image.open(BytesIO(response.content))
-    #     image = image.convert('RGB')
-    #
-    #     # Calculate new width to maintain aspect ratio
-    #     aspect_ratio = image.width / image.height
-    #     new_width = int(target_height * aspect_ratio)
-    #
-    #     # Resize image to have the target height
-    #     image = image.resize((new_width, target_height), Image.ANTIALIAS)
-    #
-    #     # Create a new image with a white background and the target height
-    #     final_image = Image.new('RGB', (new_width, target_height), background_color)
-    #
-    #     # Calculate left position to center the image
-    #     left = (final_image.width - image.width) // 2
-    #     final_image.paste(image, (left, 0))  # Paste resized image onto white background
-    #     image_array = np.array(final_image) / 255.0  # Normalize to range [0, 1]
-    #     return image_array
+    def load_and_preprocess_image(self, image_url, target_height=50, background_color=(255, 255, 255)):
+        response = requests.get(image_url, None)
+        image = Image.open(BytesIO(response.content))
+        image = image.convert('RGB')
 
+        # Calculate new width to maintain aspect ratio
+        aspect_ratio = image.width / image.height
+        new_width = int(target_height * aspect_ratio)
+
+        # Resize image to have the target height
+        image = image.resize((new_width, target_height), Image.LANCZOS)
+
+        # Create a new image with a white background and the target height
+        final_image = Image.new('RGB', (new_width, target_height), background_color)
+
+        # Calculate left position to center the image
+        left = (final_image.width - image.width) // 2
+        final_image.paste(image, (left, 0))  # Paste resized image onto white background
+        # image_array = np.array(final_image) / 255.0  # Normalize to range [0, 1]
+        return final_image #image_array
 
     # def combine_images(self, logo1, xmark, logo2):
     #     combined_image = np.concatenate([logo1, xmark, logo2], axis=1)
     #     return combined_image
+    def combine_images(self, logo1, xmark, logo2):
+        widths, height = logo1.width + xmark.width + logo2.width, logo1.height
+        combined_image = Image.new('RGB', (widths, height))
+        combined_image.paste(logo1, (0, 0))
+        combined_image.paste(xmark, (logo1.width, 0))
+        combined_image.paste(logo2, (logo1.width + xmark.width, 0))
+        return combined_image
 
     def run(self, email: dict):
+        html_template = self.load_html_template()
 
         # Generate composite image with the obtained logo URLs
-        # logo1_url = email['logo']  # our logo
-        # logo2_url = email["image"]  # target logo
-        # xmark_url = ('https://images.squarespace-cdn.com/content/v1/55ece940e4b048d1ed401c11/1450136257542-4DATU4KR'
-        #              'B70MDENGJXJX/X%3A++The+Unknown') # xmark image
-        #
-        # logo1 = self.load_and_preprocess_image(logo1_url)
-        #
-        # logo2 = self.load_and_preprocess_image(logo2_url)
-        #
-        # xmark = self.load_and_preprocess_image(xmark_url) #need to figure out how to account for this
-        #                                                   #maybe add separate parameter to dictionary?
+        logo1_url = email['logo']  # our logo
+        logo2_url = email['image']  # target logo
+        xmark_url = ('https://images.squarespace-cdn.com/content/v1/55ece940e4b048d1ed401c11/1450136257542-4DATU4KR'
+                     'B70MDENGJXJX/X%3A++The+Unknown')  # xmark image
 
+        if logo1_url and logo2_url:
+            # print('Merging images..')
+            logo1 = self.load_and_preprocess_image(logo1_url)
+            xmark = self.load_and_preprocess_image(xmark_url)
+            logo2 = self.load_and_preprocess_image(logo2_url)
 
-        # # Combine images
-        # composite_image_array = self.combine_images(logo1, xmark, logo2)
-        #
-        # # Save the composite image
-        # image_filename = f'composite_{email["title"]}.png'
-        # composite_image_path = os.path.join(self.output_dir, image_filename)
-        # Image.fromarray((composite_image_array * 255).astype(np.uint8)).save(composite_image_path)
-        # #print(composite_image_path)
+            composite_image = self.combine_images(logo1, xmark, logo2)
+            image_filename = f'composite_{email["title"].replace(" ", "_")}.png'
+            composite_image_path = os.path.join(self.output_dir, image_filename)
+            composite_image.save(composite_image_path)
+            # print(self.output_dir)
+            # Image URL is saved in email dictionary
+            email['merged_logos'] = f'{composite_image_path.replace('frontend/static/', '')}'
+            # print(email['merged_logos'])
 
         # Update the HTML with the new image
-        html_template = self.load_html_template()
         content = email["email_content"]
+        # print(content)
         html_template = html_template.replace("{{content}}", content)
-        # html_template = html_template.replace("{{image}}", composite_image_path)
         # print(html_template)
 
         # Write the HTML to a file

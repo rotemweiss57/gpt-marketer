@@ -2,8 +2,7 @@
 {% block title %}AIM Confirmation{% endblock %}
 
 {% block content %}
-
-        <div style="color: white">
+        <div style="color: black">
             {% for item in data %}
                 <div class="row card">
                     <div class="email-content">
@@ -11,6 +10,7 @@
                         <hr style="border: 0.5px solid lightgrey">
                         <p><strong>Email to:</strong> {{ item['email'] }}</p>
                         <div>{{ item['email_content'] | safe }}</div>
+                        <div><img src="{{ url_for('static', filename=item['merged_logos']) }}" alt="Composite Image"></div>
                     </div>
                     <hr class="my-2">
                     <div class="row justify-content-center">

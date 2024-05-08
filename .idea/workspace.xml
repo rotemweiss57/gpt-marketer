@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5d5c62ad-0df1-4195-a1e3-4a2f3124e4fc" name="Changes" comment="Fixed bugs in designer and writer agents">
+      <change afterPath="$PROJECT_DIR$/frontend/static/images/frontpage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126523/composite_Marketing_Coordinator.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126523/composite_Marketing_Manager.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126523/composite_SEO_Specialist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126523/composite_Social_Media_Specialist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126523/email.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126523/emails.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126668/composite_Marketing_Coordinator.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126668/composite_Marketing_Manager.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126668/composite_SEO_Specialist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126668/composite_Social_Media_Specialist.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126668/email.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/static/outputs/run_1715126668/emails.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/agents/designer.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/agents/designer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/agents/writer.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/agents/writer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/email_confirmation.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/email_confirmation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/layout.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Mzisbrod&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Mzisbrod/gpt-marketer.git&quot;,
+    &quot;accountId&quot;: &quot;fc6c56bd-9b62-4435-aa2a-f17961b8cbfb&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2dQATYe4TwaQOA4XlTyz1vFgyCw" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.Main.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.critique.executor": "Run",
+    "Python.server.executor": "Run",
+    "Python.spam_detector.executor": "Run",
+    "Python.spam_model.executor": "Run",
+    "Python.spam_model_tester.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/mzisbrod/PycharmProjects/gpt-marketer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/static/images" />
+      <recent name="$PROJECT_DIR$/backend/agents/models" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="PythonConfigurationType" factoryName="Python">
+      <module name="gpt-marketer" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="OPENAI_API_KEY" value="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" />
+        <env name="TAVILY_API_KEY" value="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" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5d5c62ad-0df1-4195-a1e3-4a2f3124e4fc" name="Changes" comment="" />
+      <created>1709929937871</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709929937871</updated>
+      <workItem from="1709929939456" duration="165000" />
+      <workItem from="1709930125023" duration="2073000" />
+      <workItem from="1709932218032" duration="2694000" />
+      <workItem from="1709944463154" duration="359000" />
+      <workItem from="1712861740055" duration="3600000" />
+      <workItem from="1712865353262" duration="913000" />
+      <workItem from="1712875654166" duration="29000" />
+      <workItem from="1713477521913" duration="1883000" />
+      <workItem from="1713807360823" duration="4000" />
+      <workItem from="1713818815386" duration="896000" />
+      <workItem from="1714757916208" duration="1063000" />
+      <workItem from="1715086789816" duration="11331000" />
+      <workItem from="1715120042443" duration="7244000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added textboxes to UI">
+      <option name="closed" value="true" />
+      <created>1709934609055</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1709934609055</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Modified spam_detector model and critique threshold">
+      <option name="closed" value="true" />
+      <created>1712864753034</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712864753034</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fixed bugs in designer and writer agents">
+      <option name="closed" value="true" />
+      <created>1715097762165</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715097762165</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added textboxes to UI" />
+    <MESSAGE value="Modified spam_detector model and critique threshold" />
+    <MESSAGE value="Fixed bugs in designer and writer agents" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs in designer and writer agents" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/gpt_marketer$server.coverage" NAME="server Coverage Results" MODIFIED="1712865369146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/spam_model_py$server.coverage" NAME="server Coverage Results" MODIFIED="1713818904392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend" />
+    <SUITE FILE_PATH="coverage/gpt_marketer$app.coverage" NAME="app Coverage Results" MODIFIED="1712865454399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/spam_model_py$app.coverage" NAME="app Coverage Results" MODIFIED="1714758876028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/gpt_marketer$critique.coverage" NAME="critique Coverage Results" MODIFIED="1712864656100" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/agents" />
+    <SUITE FILE_PATH="coverage/gpt_marketer$spam_model.coverage" NAME="spam_model Coverage Results" MODIFIED="1712863461569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/agents/models" />
+    <SUITE FILE_PATH="coverage/gpt_marketer$Main.coverage" NAME="Main Coverage Results" MODIFIED="1715127306426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/gpt_marketer$spam_model_tester.coverage" NAME="spam_model_tester Coverage Results" MODIFIED="1712864660711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/agents/models" />
+    <SUITE FILE_PATH="coverage/gpt_marketer$spam_detector.coverage" NAME="spam_detector Coverage Results" MODIFIED="1715087363278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/backend/agents/models" />
+  </component>
+</project>
